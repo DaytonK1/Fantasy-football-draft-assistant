@@ -4,7 +4,15 @@ A Streamlit application for analyzing QB and WR statistics and making draft deci
 """
 import streamlit as st
 import plotly.express as px
+import pandas as pd
 from src.utils import load_qb_data, load_wr_data, get_stat_ranges, filter_players
+
+def format_numbers(df):
+    """Format numbers in the dataframe to display 2 decimal places"""
+    float_cols = df.select_dtypes(include=['float64']).columns
+    for col in float_cols:
+        df[col] = df[col].apply(lambda x: f"{x:.2f}")
+    return df
 
 def display_qb_stats():
     st.header("Quarterback Statistics")
@@ -35,20 +43,27 @@ def display_qb_stats():
                                    min_value=float(min_val),
                                    max_value=float(max_val),
                                    value=float(min_val),
+                                   step=0.01,
+                                   format="%.2f",
                                    key=f"qb_{stat}_min"),
             'max': st.sidebar.slider(f"Max {stat}", 
                                    min_value=float(min_val),
                                    max_value=float(max_val),
                                    value=float(max_val),
+                                   step=0.01,
+                                   format="%.2f",
                                    key=f"qb_{stat}_max")
         }
 
     # Filter players based on criteria
     filtered_df = filter_players(df, filters)
     
+    # Format numbers for display
+    display_df = format_numbers(filtered_df.copy())
+    
     # Display results
     st.subheader("Filtered QB Rankings")
-    st.dataframe(filtered_df.style.highlight_max(subset=['FPTS/G'], color='lightgreen'))
+    st.dataframe(display_df.style.highlight_max(subset=['FPTS/G'], color='lightgreen'))
     
     # Visualizations
     st.subheader("QB Performance Visualization")
@@ -86,20 +101,27 @@ def display_wr_stats():
                                    min_value=float(min_val),
                                    max_value=float(max_val),
                                    value=float(min_val),
+                                   step=0.01,
+                                   format="%.2f",
                                    key=f"wr_{stat}_min"),
             'max': st.sidebar.slider(f"Max {stat}", 
                                    min_value=float(min_val),
                                    max_value=float(max_val),
                                    value=float(max_val),
+                                   step=0.01,
+                                   format="%.2f",
                                    key=f"wr_{stat}_max")
         }
 
     # Filter players based on criteria
     filtered_df = filter_players(df, filters)
     
+    # Format numbers for display
+    display_df = format_numbers(filtered_df.copy())
+    
     # Display results
     st.subheader("Filtered WR Rankings")
-    st.dataframe(filtered_df.style.highlight_max(subset=['FPTS/G'], color='lightgreen'))
+    st.dataframe(display_df.style.highlight_max(subset=['FPTS/G'], color='lightgreen'))
     
     # Visualizations
     st.subheader("WR Performance Visualization")

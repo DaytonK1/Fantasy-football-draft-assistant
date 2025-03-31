@@ -15,6 +15,11 @@ def load_qb_data():
     df = pd.read_csv('data/qb_stats_2024.csv')
     # Clean player names to remove team
     df['Player'] = df['Player'].apply(lambda x: x.split(' (')[0])
+    
+    # Round float columns to 2 decimal places
+    float_cols = df.select_dtypes(include=['float64']).columns
+    df[float_cols] = df[float_cols].round(2)
+    
     return df
 
 def load_wr_data():
@@ -36,6 +41,10 @@ def load_wr_data():
     # Convert percentage to float
     df['ROST'] = df['ROST'].apply(lambda x: float(x.strip('%')))
     
+    # Round float columns to 2 decimal places
+    float_cols = df.select_dtypes(include=['float64']).columns
+    df[float_cols] = df[float_cols].round(2)
+    
     return df
 
 def get_stat_ranges(df):
@@ -51,7 +60,10 @@ def get_stat_ranges(df):
     numeric_cols = df.select_dtypes(include=[np.number]).columns
     ranges = {}
     for col in numeric_cols:
-        ranges[col] = {'min': df[col].min(), 'max': df[col].max()}
+        ranges[col] = {
+            'min': round(df[col].min(), 2),
+            'max': round(df[col].max(), 2)
+        }
     return ranges
 
 def filter_players(df, filters):
