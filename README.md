@@ -13,7 +13,7 @@ A Streamlit-based web application designed to help fantasy football managers mak
 ## Installation
 1. Clone this repository:
 ```bash
-git clone [your-repo-url]
+git clone https://github.com/DaytonK1/fantasy-football-draft-assistant.git
 ```
 
 2. Install required dependencies:
