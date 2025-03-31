@@ -4,8 +4,10 @@ A Streamlit application for analyzing 2024 NFL statistics to make informed draft
 """
 import streamlit as st
 import plotly.express as px
-import pandas as pd
-from src.utils import load_qb_data, load_wr_data, load_rb_data, get_stat_ranges, filter_players
+from src.utils import (
+    load_qb_data, load_wr_data, load_rb_data,
+    get_stat_ranges, filter_players
+)
 
 def format_numbers(df):
     """Format numbers in the dataframe to display 2 decimal places"""
@@ -62,7 +64,7 @@ def display_stats(position, load_func, key_stats):
     
     # Display results
     st.subheader(f"Filtered {position} Rankings")
-    st.dataframe(display_df.style.highlight_max(subset=['FPTS/G'], color='lightgreen'))
+    st.dataframe(display_df)
     
     # Visualizations
     st.subheader(f"{position} Performance Visualization")
@@ -87,7 +89,7 @@ def main():
         },
         "Running Backs": {
             "load_func": load_rb_data,
-            "key_stats": ['FPTS/G', 'YDS', 'TD', 'REC', 'REC_YDS', 'REC_TD']
+            "key_stats": ['FPTS/G', 'YDS', 'TD', 'REC', 'YDS.1', 'TD.1']
         }
     }
     

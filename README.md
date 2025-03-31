@@ -8,7 +8,7 @@ A Streamlit-based web application designed to help fantasy football managers mak
 - Filter WRs by key statistics (Points per Game, Receptions, Targets, Yards, TDs)
 - Filter RBs by key statistics (Points per Game, Rushing Yards, Rushing TDs, Receptions, Receiving Yards, Receiving TDs)
 - Interactive data visualization using Plotly
-- Sortable statistics table with highlighting
+- Sortable statistics table
 - Player performance comparisons
 - Roster percentage insights
 
@@ -28,6 +28,11 @@ To run the Fantasy Football Draft Assistant:
 ```bash
 streamlit run app.py
 ```
+
+The application will open in your default web browser. For each position:
+1. Use the sidebar sliders to filter players based on their statistics
+2. View the filtered results in the sortable table
+3. Analyze player performance using the interactive scatter plot
 
 ## Project Structure
 ```
