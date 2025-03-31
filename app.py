@@ -1,6 +1,6 @@
 """
-Fantasy Football Draft Assistant
-A Streamlit application for analyzing QB, WR, and RB statistics and making draft decisions.
+Fantasy Football Draft Assistant 2025
+A Streamlit application for analyzing 2024 NFL statistics to make informed draft decisions for 2025.
 """
 import streamlit as st
 import plotly.express as px
@@ -72,7 +72,8 @@ def display_stats(position, load_func, key_stats):
     st.plotly_chart(fig)
 
 def main():
-    st.title("Fantasy Football Draft Assistant 2024")
+    st.title("Fantasy Football Draft Assistant 2025")
+    st.write("Using 2024 NFL season statistics to help you make informed draft decisions")
     
     # Position configurations
     positions = {
