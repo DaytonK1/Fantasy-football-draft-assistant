@@ -47,6 +47,26 @@ def load_wr_data():
     
     return df
 
+def load_rb_data():
+    """
+    Load and preprocess RB statistics data.
+    
+    Returns:
+        pd.DataFrame: Processed RB statistics
+    """
+    df = pd.read_csv('data/rb_stats_2024.csv')
+    # Clean player names to remove team
+    df['Player'] = df['Player'].apply(lambda x: x.split(' (')[0])
+    
+    # Rename receiving yards column to avoid confusion
+    df = df.rename(columns={'YDS.1': 'REC_YDS', 'TD.1': 'REC_TD'})
+    
+    # Round float columns to 2 decimal places
+    float_cols = df.select_dtypes(include=['float64']).columns
+    df[float_cols] = df[float_cols].round(2)
+    
+    return df
+
 def get_stat_ranges(df):
     """
     Get the min and max values for each numerical stat.
