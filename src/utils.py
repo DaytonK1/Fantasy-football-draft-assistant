@@ -17,6 +17,18 @@ def load_qb_data():
     df['Player'] = df['Player'].apply(lambda x: x.split(' (')[0])
     return df
 
+def load_wr_data():
+    """
+    Load and preprocess WR statistics data.
+    
+    Returns:
+        pd.DataFrame: Processed WR statistics
+    """
+    df = pd.read_csv('data/wr_stats_2024.csv')
+    # Clean player names to remove team
+    df['Player'] = df['Player'].apply(lambda x: x.split(' (')[0])
+    return df
+
 def get_stat_ranges(df):
     """
     Get the min and max values for each numerical stat.
