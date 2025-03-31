@@ -1,10 +1,11 @@
 # Fantasy Football Draft Assistant 2024
 
 ## Project Overview
-A Streamlit-based web application designed to help fantasy football managers make informed decisions during their drafts. The application provides interactive filtering and visualization of QB statistics from the 2024 season.
+A Streamlit-based web application designed to help fantasy football managers make informed decisions during their drafts. The application provides interactive filtering and visualization of QB and WR statistics from the 2024 season.
 
 ## Features
 - Filter QBs by key statistics (Points per Game, TDs, INTs, Yards, Completions)
+- Filter WRs by key statistics (Points per Game, Receptions, Targets, Yards, TDs)
 - Interactive data visualization using Plotly
 - Sortable statistics table with highlighting
 - Player performance comparisons
@@ -33,14 +34,15 @@ streamlit-midterm/
 ├── app.py              # Main Streamlit application
 ├── requirements.txt    # Project dependencies
 ├── data/              # Data directory
-│   └── qb_stats_2024.csv  # QB statistics dataset
+│   ├── qb_stats_2024.csv  # QB statistics dataset
+│   └── wr_stats_2024.csv  # WR statistics dataset
 └── src/               # Source code directory
     └── utils.py       # Data processing utilities
 ```
 
 ## Data Sources
-- QB statistics from 2024 NFL season
-- Includes passing and rushing statistics
+- QB and WR statistics from 2024 NFL season
+- Includes passing, rushing, and receiving statistics
 - Fantasy points calculated using standard scoring
 
 ## Development

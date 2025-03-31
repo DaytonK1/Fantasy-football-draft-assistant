@@ -27,6 +27,15 @@ def load_wr_data():
     df = pd.read_csv('data/wr_stats_2024.csv')
     # Clean player names to remove team
     df['Player'] = df['Player'].apply(lambda x: x.split(' (')[0])
+    
+    # Convert string numbers with commas to float
+    numeric_cols = ['YDS', 'REC', 'TGT', 'TD', 'ATT', 'FPTS', 'FPTS/G']
+    for col in numeric_cols:
+        df[col] = df[col].apply(lambda x: float(str(x).replace(',', '')))
+    
+    # Convert percentage to float
+    df['ROST'] = df['ROST'].apply(lambda x: float(x.strip('%')))
+    
     return df
 
 def get_stat_ranges(df):
