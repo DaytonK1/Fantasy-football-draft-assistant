@@ -69,7 +69,7 @@ def display_stats(position, load_func, key_stats):
     # Visualizations
     st.subheader(f"{position} Performance Visualization")
     plot_stat = st.selectbox("Select Stat to Plot", key_stats, key=f"{position.lower()[:2]}_plot_stat")
-    fig = px.scatter(filtered_df, x=plot_stat, y='FPTS/G', 
+    fig = px.scatter(filtered_df, x=plot_stat, y='Fantasy Points per Game', 
                     hover_data=['Player'], title=f"{plot_stat} vs Fantasy Points per Game")
     st.plotly_chart(fig)
 
@@ -81,15 +81,15 @@ def main():
     positions = {
         "Quarterbacks": {
             "load_func": load_qb_data,
-            "key_stats": ['FPTS/G', 'TD', 'INT', 'YDS', 'CMP']
+            "key_stats": ['Fantasy Points per Game', 'Touchdowns', 'Interceptions', 'Passing Yards', 'Completions']
         },
         "Wide Receivers": {
             "load_func": load_wr_data,
-            "key_stats": ['FPTS/G', 'REC', 'TGT', 'YDS', 'TD']
+            "key_stats": ['Fantasy Points per Game', 'Receptions', 'Targets', 'Receiving Yards', 'Receiving Touchdowns']
         },
         "Running Backs": {
             "load_func": load_rb_data,
-            "key_stats": ['FPTS/G', 'YDS', 'TD', 'REC', 'YDS.1', 'TD.1']
+            "key_stats": ['Fantasy Points per Game', 'Rushing Yards', 'Rushing Touchdowns', 'Receptions', 'Receiving Yards', 'Receiving Touchdowns']
         }
     }
     

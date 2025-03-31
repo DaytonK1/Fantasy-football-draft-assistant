@@ -56,4 +56,4 @@ streamlit-midterm/
 This project follows standard Python coding and uses Git for version control.
 
 ## License
-MIT License
+MIT License - See LICENSE file for details
